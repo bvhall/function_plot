@@ -10,9 +10,11 @@ fn x_squared (input: f64) -> f64 {
     y_val
 }
 
-// fn sine_wave (input: f64) -> f64 {
-//     let y_val: f64 = 
-// }
+fn sine_wave (input: f64) -> f64 {
+    let y_val: f64 = input.sin();
+    println!("{}", y_val); // debug
+    y_val
+}
 
 fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -> f64, step: f64) {
     
@@ -45,8 +47,9 @@ fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -
                 
                 for _x_pos in 0..x_points {
 
-                    // get function output for the current x
+                    // get function output for the current x and round to step precision
                     output = function(x_curr);
+                    
 
                     if output == y_curr {
                         print!("*")
@@ -77,4 +80,6 @@ fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -
 
 fn main() {
     plot(-5, 5, -5, 5, x_squared, 0.5);
+    plot(-5, 5, -5, 5, sine_wave, 0.1);
+
 }
