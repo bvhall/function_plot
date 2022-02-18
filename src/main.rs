@@ -10,6 +10,10 @@ fn x_squared (input: f64) -> f64 {
     y_val
 }
 
+// fn sine_wave (input: f64) -> f64 {
+//     let y_val: f64 = 
+// }
+
 fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -> f64, step: f64) {
     
     // Sanity check parameters
