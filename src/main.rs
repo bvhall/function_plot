@@ -24,8 +24,8 @@ fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -
 
     // keeps track of the current x and y coordinates with respect to the absolute terminal points
     // kept track by y_pos and x_pos
-    let mut x_curr = x_start as f64;
-    let mut y_curr = y_start as f64;
+    let mut x_curr = x_end as f64;
+    let mut y_curr = y_end as f64;
 
     // draw graph
     // outer loop prints the rows (y), while the inner loop prints the columns (x)
@@ -43,43 +43,31 @@ fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -
 
                     // get function output for the current x
                     output = function(x_curr);
-                    
-                    // if (output < (y_curr + step)) && (output > (y_curr - step)) {
-                    //     print!("*");
-                    // }
-
-                    // else if (output < (0.0 + step)) && (output > (0.0 - step)) {
-                    //     print!("|");
-                    // }
-
-                    // else if (x_curr < (0.0 + step)) && (x_curr > (0.0 - step)) {
-                    //     print!("―");
-                    // }
 
                     if output == y_curr {
                         print!("*")
                     }
 
                     else if output == 0.0 {
-                        print!("―")
-                    }
-
-                    else if x_curr == 0.0 {
                         print!("|")
                     }
 
-                    else {
-                        print!("x");
+                    else if y_curr == 0.0 {
+                        print!("―")
                     }
 
-                    x_curr += step;
-                }
+                    else {
+                        print!(" ")
+                        //print!("({}, {})", x_curr, y_curr); // debug
+                    }
 
-                y_curr += step;
+                    x_curr -= step;
+                }
+                x_curr = x_end as f64;
+                y_curr -= step;
                 println!(); // print newline
         }
     }
-
 
 }
 
