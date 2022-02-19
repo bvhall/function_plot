@@ -4,6 +4,8 @@
 const MAX_X_GRID: i32 = 120;
 const MAX_Y_GRID: i32 = 120;
 
+use rug::Rational;
+
 // test function that returns the result of x^2
 fn x_squared (input: f64) -> f64 {
     let y_val: f64 = input * input;
@@ -41,15 +43,13 @@ fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -
 
     if x_points < MAX_X_GRID && y_points < MAX_Y_GRID {
 
-            let mut output: f64; // declare output as mutable outside loop to save complexity
-
             for _y_pos in 0..y_points {
                 
                 for _x_pos in 0..x_points {
 
                     // get function output for the current x and round to step precision
-                    output = function(x_curr);
-                    
+                    let output = Rational::from_f64(function(x_curr)).unwrap();
+                                    
 
                     if output == y_curr {
                         print!("*")
@@ -80,6 +80,6 @@ fn plot (x_start: i32, x_end: i32, y_start: i32, y_end: i32, function: fn(f64) -
 
 fn main() {
     plot(-5, 5, -5, 5, x_squared, 0.5);
-    plot(-5, 5, -5, 5, sine_wave, 0.1);
+    // plot(-5, 5, -5, 5, sine_wave, 0.1);
 
 }
